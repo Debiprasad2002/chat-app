@@ -25,6 +25,7 @@ This project is a simple chat application that includes user registration, login
   - Simple and intuitive UI for user registration, login, and chat.
   - Includes input fields for messages and a display area for chat history.
 
+
 ## Folder Structure
 
 chat-app/
