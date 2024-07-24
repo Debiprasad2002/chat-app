@@ -1,0 +1,158 @@
+
+Chat Application Documentation
+
+## Overview
+
+This project is a real-time chat application with user authentication. The application allows users to register, log in, and chat with others in real time. It uses a combination of Express.js for the backend, MongoDB for data storage, and vanilla JavaScript for the frontend. 
+
+## Features
+
+1. **User Registration and Authentication**:
+   - Users can register with a username, email, and password.
+   - Passwords are securely stored using hashing techniques.
+   - Users can log in to access the chat functionality.
+
+2. **WebSocket Setup**:
+   - Establishes a WebSocket connection for real-time communication.
+   - Ensures only authenticated users can open a WebSocket connection.
+
+3. **Real-time Messaging**:
+   - Allows users to send and receive messages in real time.
+   - Broadcasts messages to all connected users.
+
+4. **Message Handling**:
+   - Displays messages with timestamps and the sender’s username.
+   - Ensures reliable message transmission and reception.
+
+5. **User Interface**:
+   - Provides a user-friendly interface for registration, login, and chatting.
+   - Includes input fields for messages and a display area for chat history.
+
+## Folder Structure
+
+### `client/`
+
+- **`index.html`**: Landing page or entry point of the application.
+- **`signup.html`**: User registration page.
+- **`login.html`**: User login page.
+- **`chat.html`**: Chat interface page.
+- **`css/styles.css`**: Styles for the client-side pages.
+- **`js/main.js`**: Client-side JavaScript for handling user interactions and WebSocket connections.
+
+### `server/`
+
+- **`config/db.js`**: MongoDB connection configuration.
+- **`controllers/authController.js`**: Logic for user registration and login.
+- **`controllers/chatController.js`**: Logic for chat-related operations.
+- **`models/userModel.js`**: Schema and model for user data.
+- **`models/messageModel.js`**: Schema and model for chat messages.
+- **`routes/authRoutes.js`**: Routes for user authentication.
+- **`routes/chatRoutes.js`**: Routes for chat functionalities.
+- **`server.js`**: Main server setup file.
+
+## Setup and Configuration
+
+1. **Install Dependencies**
+
+   Navigate to the `server` directory and install the required dependencies:
+
+   cd server
+   npm install
+   
+
+2. **Set Up the Database**
+
+   Ensure MongoDB is running and update the `config/db.js` file with your MongoDB URI.
+
+3. **Start the Server**
+
+   Run the server using:
+   npm start
+   
+
+4. **Open the Client**
+
+   Open `client/index.html` in your web browser to access the application.
+
+## File Details
+
+### `client/signup.html`
+
+- **Purpose**: Provides a form for users to register.
+- **Implementation**: Contains input fields for username, email, and password. Submits data to the `/api/auth/register` endpoint.
+
+### `client/login.html`
+
+- **Purpose**: Provides a form for users to log in.
+- **Implementation**: Contains input fields for username and password. Submits data to the `/api/auth/login` endpoint.
+
+### `client/chat.html`
+
+- **Purpose**: Displays the chat interface for authenticated users.
+- **Implementation**: Includes a message display area and input field for sending messages. Establishes a WebSocket connection to the server.
+
+### `client/css/styles.css`
+
+- **Purpose**: Styles the client-side pages.
+- **Implementation**: Contains general styling, including shadows, hover effects, and layout settings.
+
+### `client/js/main.js`
+
+- **Purpose**: Handles client-side JavaScript.
+- **Implementation**:
+  - **`signupForm`**: Submits user registration data to the server.
+  - **`loginForm`**: Submits user login data and stores JWT in local storage.
+  - **`messageForm`**: Establishes a WebSocket connection and handles real-time messaging.
+
+### `server/config/db.js`
+
+- **Purpose**: Configures the MongoDB connection.
+- **Implementation**: Exports a connection function using Mongoose.
+
+### `server/controllers/authController.js`
+
+- **Purpose**: Handles authentication logic.
+- **Implementation**:
+  - **`register`**: Registers a new user with hashed password.
+  - **`login`**: Authenticates user and returns a JWT.
+
+### `server/controllers/chatController.js`
+
+- **Purpose**: Manages chat functionalities.
+- **Implementation**:
+  - **`handleMessage`**: Processes incoming messages and broadcasts them to all connected clients.
+
+### `server/models/userModel.js`
+
+- **Purpose**: Defines the user schema and model.
+- **Implementation**: Includes fields for username, email, and hashed password.
+
+### `server/models/messageModel.js`
+
+- **Purpose**: Defines the message schema and model.
+- **Implementation**: Includes fields for message text, sender, and timestamp.
+
+### `server/routes/authRoutes.js`
+
+- **Purpose**: Defines routes for authentication.
+- **Implementation**:
+  - **`POST /api/auth/register`**: Handles user registration.
+  - **`POST /api/auth/login`**: Handles user login.
+
+### `server/routes/chatRoutes.js`
+
+- **Purpose**: Defines routes for chat functionalities.
+- **Implementation**:
+  - **`GET /api/chat`**: Sets up WebSocket connection.
+
+### `server/server.js`
+
+- **Purpose**: Main server setup.
+- **Implementation**: Sets up Express, connects to MongoDB, and initializes WebSocket server.
+
+## Running the Application
+
+1. **Start MongoDB**: Ensure MongoDB is running.
+2. **Start the Server**: Run `npm start` in the `server` directory.
+3. **Access the Client**: Open `client/index.html` in your web browser.
+
